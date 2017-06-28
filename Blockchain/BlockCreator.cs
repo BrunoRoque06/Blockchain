@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Blockchain
 {
-    class Program
+    public class BlockCreator
     {
-        static void Main(string[] args)
+        public string EstimateHash(Block block)
         {
-            Console.WriteLine("Hello World!".GetHashCode());
+            return String.Empty;
         }
     }
 }
