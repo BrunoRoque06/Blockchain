@@ -1,16 +1,22 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blockchain.Tests
 {
     [TestFixture]
     public class BlockFactoryTests
     {
-        BlockFactory _blockFactory = new BlockFactory(new HashEstimator());
+        BlockFactory _blockFactory;
+
+        [SetUp]
+        public void BeforeTests()
+        {
+            Mock<IHashEstimator> hashEstimator = new Mock<IHashEstimator>();
+            hashEstimator.Setup(h => h.EstimateHash(It.IsAny<Block>())).Returns("Mu");
+
+            _blockFactory = new BlockFactory(hashEstimator.Object);
+        }
 
         [Test]
         public void Test_that_when_creating_a_block_index_should_be_increased_by_one()
@@ -25,11 +31,19 @@ namespace Blockchain.Tests
         [Test]
         public void Test_that_when_creating_a_block_the_previous_hash_of_the_new_block_should_be_the_one_from_last_block()
         {
-            var block = new Block() { Hash = "Mu" };
+            var block = new Block() { Hash = "Queen" };
 
             var newBlock = _blockFactory.GenerateNextBlock(block);
 
-            Assert.That(newBlock.PreviousHash, Is.EqualTo("Mu"));
+            Assert.That(newBlock.PreviousHash, Is.EqualTo("Queen"));
+        }
+
+        [Test]
+        public void Test_that_the_hash_from_the_new_block_is_obtained_through_HashEstimator()
+        {
+            var newBlock = _blockFactory.GenerateNextBlock(new Block());
+
+            Assert.That(newBlock.Hash, Is.EqualTo("Mu"));
         }
     }
 }

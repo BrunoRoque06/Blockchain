@@ -13,12 +13,14 @@ namespace Blockchain
 
         public Block GenerateNextBlock(Block lastBlock)
         {
-            var newBlock = new Block();
+            var newBlock = new Block()
+            {
+                Index = lastBlock.Index + 1,
+                DateTime = DateTime.Now,
+                PreviousHash = lastBlock.Hash
+            };
 
-            newBlock.Index = lastBlock.Index + 1;
-            newBlock.DateTime = DateTime.Now;
-            newBlock.PreviousHash = lastBlock.Hash;
-
+            newBlock.Hash = _hashEstimator.EstimateHash(newBlock);
 
             return newBlock;
         }
