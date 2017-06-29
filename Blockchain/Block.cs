@@ -5,18 +5,18 @@ namespace Blockchain
     public class Block
     {
         public int Index { get; set; }
-        public byte[] PreviousHash { get; set; }
+        public string PreviousHash { get; set; }
         public DateTime Timestamp { get; set; }
         public double Data { get; set; }
-        public byte[] Hash { get; set; }
+        public string Hash { get; set; }
 
-        public Block(int index, byte[] previousHash, DateTime timestamp, double data, byte[] hash)
+        public Block(int index, string previousHash, DateTime timestamp, double data)
         {
             Index = index;
             PreviousHash = previousHash;
             Timestamp = timestamp;
             Data = data;
-            Hash = hash;
+            Hash = "1"; 
         }
     }
 }
