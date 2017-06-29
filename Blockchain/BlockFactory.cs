@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blockchain
 {
@@ -22,6 +18,7 @@ namespace Blockchain
             newBlock.Index = lastBlock.Index + 1;
             newBlock.DateTime = DateTime.Now;
             newBlock.PreviousHash = lastBlock.Hash;
+
 
             return newBlock;
         }

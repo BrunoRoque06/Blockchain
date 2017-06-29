@@ -7,18 +7,43 @@ namespace Blockchain.Tests
     public class HashEstimatorTests
     {
         HashEstimator _hashEstimator = new HashEstimator();
+        DateTime _date;
+        Block _block;
+        Block _equalToBlock;
+        Block _differentThanBlock;
+
+        [SetUp]
+        public void BeforeTest()
+        {
+            _date = new DateTime(2017, 6, 3);
+            _block = new Block()
+            {
+                Index = 1,
+                DateTime = _date,
+                PreviousHash = "O",
+                Data = "Pawn"
+            };
+            _equalToBlock = new Block()
+            {
+                Index = 1,
+                DateTime = _date,
+                PreviousHash = "O",
+                Data = "Pawn"
+            };
+            _differentThanBlock = new Block()
+            {
+                Index = 1,
+                DateTime = _date,
+                PreviousHash = "O",
+                Data = "Mu"
+            };
+        }
 
         [Test]
         public void Test_hash_estimation_to_return_the_same_value_for_the_same_inputs()
         {
-            var dateOne = new DateTime(2017, 6, 3);
-            var dateTwo = new DateTime(2017, 6, 3);
-
-            var blockOne = new Block(1, "Pawn", dateOne, "Oct");
-            var blockTwo = new Block(1, "Pawn", dateTwo, "Oct");
-
-            var hashOne = _hashEstimator.EstimateHash(blockOne);
-            var hashTwo = _hashEstimator.EstimateHash(blockTwo);
+            var hashOne = _hashEstimator.EstimateHash(_block);
+            var hashTwo = _hashEstimator.EstimateHash(_equalToBlock);
 
             Assert.That(hashOne, Is.EqualTo(hashTwo));
         }
@@ -26,14 +51,8 @@ namespace Blockchain.Tests
         [Test]
         public void Test_hash_estimation_to_return_different_values_for_different_inputs()
         {
-            var dateOne = new DateTime(2017, 6, 3);
-            var dateTwo = new DateTime(2017, 6, 3);
-
-            var blockOne = new Block(1, "Pawn", dateOne, "Oct");
-            var blockTwo = new Block(1, "Knight", dateTwo, "Jun");
-
-            var hashOne = _hashEstimator.EstimateHash(blockOne);
-            var hashTwo = _hashEstimator.EstimateHash(blockTwo);
+            var hashOne = _hashEstimator.EstimateHash(_block);
+            var hashTwo = _hashEstimator.EstimateHash(_differentThanBlock);
 
             Assert.That(hashOne, Is.Not.EqualTo(hashTwo));
         }
