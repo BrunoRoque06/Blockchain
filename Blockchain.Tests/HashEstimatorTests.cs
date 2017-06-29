@@ -14,8 +14,8 @@ namespace Blockchain.Tests
             var dateOne = new DateTime(2017, 6, 3);
             var dateTwo = new DateTime(2017, 6, 3);
 
-            var blockOne = new Block(1, "Pawn", dateOne, 18);
-            var blockTwo = new Block(1, "Pawn", dateTwo, 18);
+            var blockOne = new Block(1, "Pawn", dateOne, "Oct");
+            var blockTwo = new Block(1, "Pawn", dateTwo, "Oct");
 
             var hashOne = _hashEstimator.EstimateHash(blockOne);
             var hashTwo = _hashEstimator.EstimateHash(blockTwo);
@@ -29,8 +29,8 @@ namespace Blockchain.Tests
             var dateOne = new DateTime(2017, 6, 3);
             var dateTwo = new DateTime(2017, 6, 3);
 
-            var blockOne = new Block(1, "Pawn", dateOne, 18);
-            var blockTwo = new Block(1, "Knight", dateTwo, 18);
+            var blockOne = new Block(1, "Pawn", dateOne, "Oct");
+            var blockTwo = new Block(1, "Knight", dateTwo, "Jun");
 
             var hashOne = _hashEstimator.EstimateHash(blockOne);
             var hashTwo = _hashEstimator.EstimateHash(blockTwo);

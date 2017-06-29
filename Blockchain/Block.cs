@@ -7,10 +7,14 @@ namespace Blockchain
         public int Index { get; set; }
         public string PreviousHash { get; set; }
         public DateTime DateTime { get; set; }
-        public double Data { get; set; }
+        public string Data { get; set; }
         public string Hash { get; set; }
 
-        public Block(int index, string previousHash, DateTime dateTime, int data)
+        public Block()
+        {
+        }
+
+        public Block(int index, string previousHash, DateTime dateTime, string data)
         {
             Index = index;
             PreviousHash = previousHash;

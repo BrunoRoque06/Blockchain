@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blockchain
 {
-    public class HashEstimator
+    public class HashEstimator : IHashEstimator
     {
         public string EstimateHash(Block block)
         {
