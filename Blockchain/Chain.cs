@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Blockchain
 {
@@ -19,6 +20,14 @@ namespace Blockchain
 
         public void AddBlock(string data)
         {
+            var newBlock = _blockFactory.GenerateNextBlock(GetLastBlock(), data);
+
+            BlockChain.Add(newBlock);
+        }
+
+        public Block GetLastBlock()
+        {
+            return BlockChain.Last();
         }
     }
 }
