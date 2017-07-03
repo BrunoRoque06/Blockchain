@@ -2,6 +2,6 @@
 {
     public interface IHashEstimator
     {
-        string EstimateHash(Block block);
+        string Estimate(Block block);
     }
 }

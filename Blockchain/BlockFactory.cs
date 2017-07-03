@@ -11,18 +11,23 @@ namespace Blockchain
             _hashEstimator = hashEstimator;
         }
 
-        public Block GenerateNextBlock(Block lastBlock)
+        public Block GenerateNextBlock(Block lastBlock, string dataNewBlock)
         {
-            var newBlock = new Block()
-            {
-                Index = lastBlock.Index + 1,
-                DateTime = DateTime.Now,
-                PreviousHash = lastBlock.Hash
-            };
+            var nextIndex = lastBlock.Index + 1;
 
-            newBlock.Hash = _hashEstimator.EstimateHash(newBlock);
+            var dummyBlock = new Block(nextIndex,
+                DateTime.Now,
+                lastBlock.Hash,
+                string.Empty,
+                dataNewBlock);
 
-            return newBlock;
+            var newHash = _hashEstimator.Estimate(dummyBlock);
+
+            return new Block(nextIndex,
+                DateTime.Now,
+                lastBlock.Hash,
+                newHash,
+                dataNewBlock);
         }
     }
 }

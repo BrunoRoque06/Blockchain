@@ -4,12 +4,18 @@ namespace Blockchain
 {
     public class Chain
     {
-        IEnumerable<Block> Blocks;
+        public List<Block> Blocks;
         private IBlockFactory _blockFactory;
 
         public Chain(IBlockFactory blockFactory)
         {
             _blockFactory = blockFactory;
+            Blocks = new List<Block>();
+
+        }
+
+        public void AddBlock(string data)
+        {
         }
     }
 }

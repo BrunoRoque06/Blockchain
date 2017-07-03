@@ -2,6 +2,6 @@
 {
     public interface IBlockFactory
     {
-        Block GenerateNextBlock(Block lastBlock);
+        Block GenerateNextBlock(Block lastBlock, string dataNewBlock);
     }
 }
