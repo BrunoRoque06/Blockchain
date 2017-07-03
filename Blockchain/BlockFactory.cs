@@ -2,7 +2,7 @@
 
 namespace Blockchain
 {
-    public class BlockFactory
+    public class BlockFactory : IBlockFactory
     {
         IHashEstimator _hashEstimator;
 
