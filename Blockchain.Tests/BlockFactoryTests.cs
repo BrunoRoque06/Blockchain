@@ -54,5 +54,15 @@ namespace Blockchain.Tests
 
             Assert.That(newBlock.Data, Is.EqualTo(newData));
         }
+
+        [Test]
+        public void Test_the_properties_of_the_genesis_block()
+        {
+            var genesisBlock = _blockFactory.GenerateGenesisBlock();
+
+            Assert.That(genesisBlock.Index, Is.EqualTo(0));
+            Assert.That(genesisBlock.PreviousHash, Is.EqualTo(string.Empty));
+            Assert.That(genesisBlock.Data, Is.EqualTo("GenesisBlock"));
+        }
     }
 }

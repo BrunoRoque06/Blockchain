@@ -1,17 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Blockchain
 {
     public class Chain
     {
-        public List<Block> Blocks;
+        public List<Block> BlockChain { get; }
         private IBlockFactory _blockFactory;
 
         public Chain(IBlockFactory blockFactory)
         {
             _blockFactory = blockFactory;
-            Blocks = new List<Block>();
+            BlockChain = new List<Block>();
 
+            var genesisBlock = _blockFactory.GenerateGenesisBlock();
+            BlockChain.Add(genesisBlock);
         }
 
         public void AddBlock(string data)
