@@ -8,4 +8,4 @@ Four main classes:
 * __HashEstimator__, responsible for the estimation of hashes;
 * __Ledger__, contains the blockchain itself.
 
-Right now, it's not possible to add unvalidated blocks to the chain.
+Right now, it's not possible to add unvalidated blocks to the ledger.
