@@ -6,9 +6,9 @@ using System.Linq;
 namespace Blockchain.Tests
 {
     [TestFixture]
-    public class ChainTests
+    public class LedgerTests
     {
-        Chain _chain;
+        Ledger _chain;
         Block _genesisBlock;
         Block _dummyBlock;
 
@@ -33,7 +33,7 @@ namespace Blockchain.Tests
             blockFactory.Setup(h => h.GenerateNextBlock(It.IsAny<Block>(),
                 It.IsAny<string>())).Returns(_dummyBlock);
 
-            _chain = new Chain(blockFactory.Object);
+            _chain = new Ledger(blockFactory.Object);
         }
 
         [Test]

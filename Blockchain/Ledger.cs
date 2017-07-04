@@ -4,30 +4,30 @@ using System.Linq;
 
 namespace Blockchain
 {
-    public class Chain
+    public class Ledger
     {
-        public List<Block> BlockChain { get; }
+        public List<Block> Blocks { get; }
         private IBlockFactory _blockFactory;
 
-        public Chain(IBlockFactory blockFactory)
+        public Ledger(IBlockFactory blockFactory)
         {
             _blockFactory = blockFactory;
-            BlockChain = new List<Block>();
+            Blocks = new List<Block>();
 
             var genesisBlock = _blockFactory.GenerateGenesisBlock();
-            BlockChain.Add(genesisBlock);
+            Blocks.Add(genesisBlock);
         }
 
         public void AddBlock(string data)
         {
             var newBlock = _blockFactory.GenerateNextBlock(GetLastBlock(), data);
 
-            BlockChain.Add(newBlock);
+            Blocks.Add(newBlock);
         }
 
         public Block GetLastBlock()
         {
-            return BlockChain.Last();
+            return Blocks.Last();
         }
     }
 }

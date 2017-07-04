@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Blockchain
 {
-    public class ChainPrinter
+    public class LedgerPrinter
     {
-        public void Print(Chain chain)
+        public void Print(Ledger chain)
         {
-            foreach (var block in chain.BlockChain)
+            foreach (var block in chain.Blocks)
             {
                 PrintBlock(block);
             }
