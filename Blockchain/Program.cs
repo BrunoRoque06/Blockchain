@@ -6,7 +6,14 @@ namespace Blockchain
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!".GetHashCode());
+            var chain = new Chain(new BlockFactory(new HashEstimator()));
+            var chainPrinter = new ChainPrinter();
+
+            chain.AddBlock("Mu!");
+
+            chain.AddBlock("Agua!");
+
+            chainPrinter.Print(chain);
         }
     }
 }

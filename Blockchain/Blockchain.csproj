@@ -45,6 +45,7 @@
     <Compile Include="Block.cs" />
     <Compile Include="BlockFactory.cs" />
     <Compile Include="Chain.cs" />
+    <Compile Include="ChainPrinter.cs" />
     <Compile Include="HashEstimator.cs" />
     <Compile Include="IBlockFactory.cs" />
     <Compile Include="IHashEstimator.cs" />
