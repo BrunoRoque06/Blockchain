@@ -1,14 +1,13 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
-using System.Linq;
 
 namespace Blockchain.Tests
 {
     [TestFixture]
     public class LedgerTests
     {
-        Ledger _chain;
+        Individual _individual;
         Block _genesisBlock;
         Block _dummyBlock;
 
@@ -33,22 +32,22 @@ namespace Blockchain.Tests
             blockFactory.Setup(h => h.GenerateNextBlock(It.IsAny<Block>(),
                 It.IsAny<string>())).Returns(_dummyBlock);
 
-            _chain = new Ledger(blockFactory.Object);
+            _individual = new Individual(blockFactory.Object);
         }
 
         [Test]
         public void Test_initialization_of_a_chain_to_contain_only_a_genesis_block()
         {
-            Assert.That(_chain.GetLastBlock().Index, Is.EqualTo(0));
-            Assert.That(_chain.GetLastBlock().Data, Is.EqualTo("IsItYouGenesis"));
+            Assert.That(_individual.Ledger.GetLastBlock().Index, Is.EqualTo(0));
+            Assert.That(_individual.Ledger.GetLastBlock().Data, Is.EqualTo("IsItYouGenesis"));
         }
 
         [Test]
         public void Test_the_new_block_to_be_the_dummy_block()
         {
-            _chain.AddBlock("DoesNotMatter");
+            _individual.AddBlock("DoesNotMatter");
 
-            var lastBlock = _chain.GetLastBlock();
+            var lastBlock = _individual.Ledger.GetLastBlock();
 
             Assert.That(lastBlock.Index, Is.EqualTo(1));
             Assert.That(lastBlock.Data, Is.EqualTo("ImDummy"));

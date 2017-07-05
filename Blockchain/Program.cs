@@ -6,14 +6,14 @@ namespace Blockchain
     {
         static void Main(string[] args)
         {
-            var chain = new Ledger(new BlockFactory(new HashEstimator()));
+            var individual = new Individual(new BlockFactory(new HashEstimator()));
 
-            chain.AddBlock("First Block!");
-            chain.AddBlock("Second Block!");
-            chain.AddBlock("Third Block!");
+            individual.AddBlock("First Block!");
+            individual.AddBlock("Second Block!");
+            individual.AddBlock("Third Block!");
 
             var chainPrinter = new LedgerPrinter();
-            chainPrinter.Print(chain);
+            chainPrinter.Print(individual.Ledger);
         }
     }
 }

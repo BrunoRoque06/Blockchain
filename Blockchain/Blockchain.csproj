@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="BlockFactory.cs" />
+    <Compile Include="Individual.cs" />
     <Compile Include="Ledger.cs" />
     <Compile Include="LedgerPrinter.cs" />
     <Compile Include="HashEstimator.cs" />
