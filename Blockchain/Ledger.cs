@@ -7,9 +7,10 @@ namespace Blockchain
     {
         public List<Block> Blocks { get; }
 
-        public Ledger()
+        public Ledger(Block genesisBlock)
         {
             Blocks = new List<Block>();
+            AddBlock(genesisBlock);
         }
 
         public void AddBlock(Block newBlock)

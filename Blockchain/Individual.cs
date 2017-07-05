@@ -7,11 +7,11 @@
 
         public Individual(IBlockFactory blockFactory)
         {
-            Ledger = new Ledger();
+            
             _blockFactory = blockFactory;
-
             var genesisBlock = _blockFactory.GenerateGenesisBlock();
-            Ledger.AddBlock(genesisBlock);
+
+            Ledger = new Ledger(genesisBlock);
         }
 
         public void AddBlock(string data)

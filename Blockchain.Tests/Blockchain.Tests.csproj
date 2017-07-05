@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockFactoryTests.cs" />
-    <Compile Include="LedgerTests.cs" />
+    <Compile Include="IndividualTests.cs" />
     <Compile Include="HashEstimatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

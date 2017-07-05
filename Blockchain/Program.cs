@@ -12,8 +12,8 @@ namespace Blockchain
             individual.AddBlock("Second Block!");
             individual.AddBlock("Third Block!");
 
-            var chainPrinter = new LedgerPrinter();
-            chainPrinter.Print(individual.Ledger);
+            var ledgePrinter = new LedgerPrinter();
+            ledgePrinter.Print(individual.Ledger);
         }
     }
 }

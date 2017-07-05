@@ -5,7 +5,7 @@ using System;
 namespace Blockchain.Tests
 {
     [TestFixture]
-    public class LedgerTests
+    public class IndividualTests
     {
         Individual _individual;
         Block _genesisBlock;
@@ -36,14 +36,14 @@ namespace Blockchain.Tests
         }
 
         [Test]
-        public void Test_initialization_of_a_chain_to_contain_only_a_genesis_block()
+        public void Test_initialization_of_an_individual_to_contain_only_a_genesis_block_in_the_ledger()
         {
             Assert.That(_individual.Ledger.GetLastBlock().Index, Is.EqualTo(0));
             Assert.That(_individual.Ledger.GetLastBlock().Data, Is.EqualTo("IsItYouGenesis"));
         }
 
         [Test]
-        public void Test_the_new_block_to_be_the_dummy_block()
+        public void Test_the_new_block_added_to_be_the_dummy_block_generated_by_the_mock()
         {
             _individual.AddBlock("DoesNotMatter");
 
