@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Blockchain
 {
-    public class Ledger
+    public class Blockchain
     {
         public List<Block> Blocks { get; }
 
-        public Ledger(Block genesisBlock)
+        public Blockchain(Block genesisBlock)
         {
             Blocks = new List<Block>();
             AddBlock(genesisBlock);

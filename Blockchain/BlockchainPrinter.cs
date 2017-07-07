@@ -2,9 +2,9 @@
 
 namespace Blockchain
 {
-    public class LedgerPrinter
+    public class BlockchainPrinter
     {
-        public void Print(Ledger chain)
+        public void Print(Blockchain chain)
         {
             foreach (var block in chain.Blocks)
             {

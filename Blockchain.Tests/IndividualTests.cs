@@ -38,8 +38,8 @@ namespace Blockchain.Tests
         [Test]
         public void Test_initialization_of_an_individual_to_contain_only_a_genesis_block_in_the_ledger()
         {
-            Assert.That(_individual.Ledger.GetLastBlock().Index, Is.EqualTo(0));
-            Assert.That(_individual.Ledger.GetLastBlock().Data, Is.EqualTo("IsItYouGenesis"));
+            Assert.That(_individual.Blockchain.GetLastBlock().Index, Is.EqualTo(0));
+            Assert.That(_individual.Blockchain.GetLastBlock().Data, Is.EqualTo("IsItYouGenesis"));
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Blockchain.Tests
         {
             _individual.AddBlock("DoesNotMatter");
 
-            var lastBlock = _individual.Ledger.GetLastBlock();
+            var lastBlock = _individual.Blockchain.GetLastBlock();
 
             Assert.That(lastBlock.Index, Is.EqualTo(1));
             Assert.That(lastBlock.Data, Is.EqualTo("ImDummy"));

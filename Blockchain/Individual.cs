@@ -2,7 +2,7 @@
 {
     public class Individual
     {
-        public Ledger Ledger { get; }
+        public Blockchain Blockchain { get; }
         private IBlockFactory _blockFactory;
 
         public Individual(IBlockFactory blockFactory)
@@ -11,13 +11,13 @@
             _blockFactory = blockFactory;
             var genesisBlock = _blockFactory.GenerateGenesisBlock();
 
-            Ledger = new Ledger(genesisBlock);
+            Blockchain = new Blockchain(genesisBlock);
         }
 
         public void AddBlock(string data)
         {
-            var newBlock = _blockFactory.GenerateNextBlock(Ledger.GetLastBlock(), data);
-            Ledger.AddBlock(newBlock);
+            var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(), data);
+            Blockchain.AddBlock(newBlock);
         }
     }
 }
