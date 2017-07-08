@@ -9,6 +9,7 @@ namespace Blockchain
         public string PreviousHash { get; }
         public string Hash { get; }
         public string Data { get; }
+        public int Nonce { get; }
 
         public Block(int index,
             DateTime dateTime,

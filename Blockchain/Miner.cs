@@ -1,11 +1,11 @@
 ﻿namespace Blockchain
 {
-    public class Individual
+    public class Miner
     {
         public Blockchain Blockchain { get; }
         private IBlockFactory _blockFactory;
 
-        public Individual(IBlockFactory blockFactory)
+        public Miner(IBlockFactory blockFactory)
         {
             
             _blockFactory = blockFactory;

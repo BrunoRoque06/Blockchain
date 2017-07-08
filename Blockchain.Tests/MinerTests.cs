@@ -5,9 +5,9 @@ using System;
 namespace Blockchain.Tests
 {
     [TestFixture]
-    public class IndividualTests
+    public class MinerTests
     {
-        Individual _individual;
+        Miner _miner;
         Block _genesisBlock;
         Block _dummyBlock;
 
@@ -32,22 +32,22 @@ namespace Blockchain.Tests
             blockFactory.Setup(h => h.GenerateNextBlock(It.IsAny<Block>(),
                 It.IsAny<string>())).Returns(_dummyBlock);
 
-            _individual = new Individual(blockFactory.Object);
+            _miner = new Miner(blockFactory.Object);
         }
 
         [Test]
         public void Test_initialization_of_an_individual_to_contain_only_a_genesis_block_in_the_ledger()
         {
-            Assert.That(_individual.Blockchain.GetLastBlock().Index, Is.EqualTo(0));
-            Assert.That(_individual.Blockchain.GetLastBlock().Data, Is.EqualTo("IsItYouGenesis"));
+            Assert.That(_miner.Blockchain.GetLastBlock().Index, Is.EqualTo(0));
+            Assert.That(_miner.Blockchain.GetLastBlock().Data, Is.EqualTo("IsItYouGenesis"));
         }
 
         [Test]
         public void Test_the_new_block_added_to_be_the_dummy_block_generated_by_the_mock()
         {
-            _individual.AddBlock("DoesNotMatter");
+            _miner.AddBlock("DoesNotMatter");
 
-            var lastBlock = _individual.Blockchain.GetLastBlock();
+            var lastBlock = _miner.Blockchain.GetLastBlock();
 
             Assert.That(lastBlock.Index, Is.EqualTo(1));
             Assert.That(lastBlock.Data, Is.EqualTo("ImDummy"));

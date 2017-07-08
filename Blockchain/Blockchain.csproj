@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="BlockFactory.cs" />
-    <Compile Include="Individual.cs" />
+    <Compile Include="Miner.cs" />
     <Compile Include="Blockchain.cs" />
     <Compile Include="BlockchainPrinter.cs" />
     <Compile Include="HashEstimator.cs" />
