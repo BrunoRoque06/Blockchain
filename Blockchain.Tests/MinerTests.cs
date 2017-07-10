@@ -52,5 +52,41 @@ namespace Blockchain.Tests
             Assert.That(lastBlock.Index, Is.EqualTo(1));
             Assert.That(lastBlock.Data, Is.EqualTo("ImDummy"));
         }
+
+        [Test]
+        public void Test_the_creation_of_a_miner_to_have_his_pointers_set_to_null()
+        {
+            var miner = new Miner(new BlockFactory(new HashEstimator()));
+
+            Assert.That(miner.Before, Is.EqualTo(null));
+            Assert.That(miner.Next, Is.EqualTo(null));
+        }
+
+        [Test]
+        public void Test_the_creation_of_two_miners_to_be_connected()
+        {
+            var firstMiner = new Miner(new BlockFactory(new HashEstimator()));
+            var secondMiner = new Miner(new BlockFactory(new HashEstimator()), firstMiner);
+
+            Assert.That(firstMiner.Before, Is.EqualTo(null));
+            Assert.That(firstMiner.Next, Is.EqualTo(secondMiner));
+            Assert.That(secondMiner.Before, Is.EqualTo(firstMiner));
+            Assert.That(secondMiner.Next, Is.EqualTo(null));
+        }
+
+        [Test]
+        public void Test_the_creation_of_tree_miners_to_be_connected()
+        {
+            var firstMiner = new Miner(new BlockFactory(new HashEstimator()));
+            var thirdMiner = new Miner(new BlockFactory(new HashEstimator()), firstMiner);
+            var secondMiner = new Miner(new BlockFactory(new HashEstimator()), firstMiner);
+
+            Assert.That(firstMiner.Before, Is.EqualTo(null));
+            Assert.That(firstMiner.Next, Is.EqualTo(secondMiner));
+            Assert.That(secondMiner.Before, Is.EqualTo(firstMiner));
+            Assert.That(secondMiner.Next, Is.EqualTo(thirdMiner));
+            Assert.That(thirdMiner.Before, Is.EqualTo(secondMiner));
+            Assert.That(thirdMiner.Next, Is.EqualTo(null));
+        }
     }
 }
