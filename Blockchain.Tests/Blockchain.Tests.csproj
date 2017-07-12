@@ -61,6 +61,7 @@
     <Compile Include="MinerTests.cs" />
     <Compile Include="HashEstimatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnconfirmedDataTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
