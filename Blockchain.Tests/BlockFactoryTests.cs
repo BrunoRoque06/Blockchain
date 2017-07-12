@@ -18,7 +18,7 @@ namespace Blockchain.Tests
 
             _blockFactory = new BlockFactory(hashEstimator.Object);
 
-            _block = new Block(1, DateTime.MinValue, string.Empty, "Queen", "CorrectData");
+            _block = new Block(1, DateTime.MinValue, string.Empty, "Queen", "CorrectData", 0);
         }
 
         [Test]

@@ -18,13 +18,15 @@ namespace Blockchain.Tests
                 DateTime.MinValue,
                 string.Empty,
                 string.Empty,
-                "IsItYouGenesis");
+                "IsItYouGenesis",
+                0);
 
             _dummyBlock = new Block(1,
                 DateTime.MaxValue,
                 string.Empty,
                 string.Empty,
-                "ImDummy");
+                "ImDummy",
+                0);
 
             Mock<IBlockFactory> blockFactory = new Mock<IBlockFactory>();
 

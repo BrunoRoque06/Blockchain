@@ -15,13 +15,15 @@ namespace Blockchain
             DateTime dateTime,
             string previousHash,
             string hash,
-            string data)
+            string data,
+            int nonce)
         {
             Index = index;
             DateTime = dateTime;
             PreviousHash = previousHash;
             Hash = hash;
             Data = data;
+            Nonce = nonce;
         }
     }
 }

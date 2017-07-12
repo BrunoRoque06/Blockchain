@@ -16,9 +16,9 @@ namespace Blockchain.Tests
         public void BeforeTest()
         {
             _date = new DateTime(2017, 6, 3);
-            _block = new Block(1, DateTime.MinValue, "O", string.Empty, "Pawn");
-            _equalToBlock = new Block(1, DateTime.MinValue, "O", string.Empty, "Pawn");
-            _differentThanBlock = new Block(1, DateTime.MinValue, "O", string.Empty, "Mu");
+            _block = new Block(1, DateTime.MinValue, "O", string.Empty, "Pawn", 0);
+            _equalToBlock = new Block(1, DateTime.MinValue, "O", string.Empty, "Pawn", 0);
+            _differentThanBlock = new Block(1, DateTime.MinValue, "O", string.Empty, "Mu", 0);
         }
 
         [Test]

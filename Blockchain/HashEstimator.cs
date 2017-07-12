@@ -9,7 +9,8 @@ namespace Blockchain
             var hash = Tuple.Create(block.Index,
                 block.PreviousHash,
                 block.DateTime,
-                block.Data).GetHashCode().ToString();
+                block.Data,
+                block.Nonce).GetHashCode().ToString();
 
             return hash;
         }

@@ -17,7 +17,8 @@ namespace Blockchain
                 DateTime.Now,
                 string.Empty,
                 string.Empty,
-                "GenesisBlock");
+                "GenesisBlock",
+                0);
         }
 
         public Block GenerateNextBlock(Block lastBlock, string dataNewBlock)
@@ -28,7 +29,8 @@ namespace Blockchain
                 DateTime.Now,
                 lastBlock.Hash,
                 string.Empty,
-                dataNewBlock);
+                dataNewBlock,
+                0);
 
             var newHash = _hashEstimator.Estimate(dummyBlock);
 
@@ -36,7 +38,8 @@ namespace Blockchain
                 DateTime.Now,
                 lastBlock.Hash,
                 newHash,
-                dataNewBlock);
+                dataNewBlock,
+                0);
         }
     }
 }
