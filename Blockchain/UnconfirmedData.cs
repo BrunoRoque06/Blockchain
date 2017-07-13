@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Blockchain.Interfaces;
+using System.Collections.Generic;
 
 namespace Blockchain
 {
-    public class UnconfirmedData
+    public class UnconfirmedData : IFifoStack
     {
         private List<string> _datas;
 

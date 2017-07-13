@@ -1,9 +1,12 @@
-﻿namespace Blockchain
+﻿using Blockchain.Interfaces;
+
+namespace Blockchain
 {
     public class Miner
     {
         public Blockchain Blockchain { get; }
         private IBlockFactory _blockFactory;
+        private IFifoStack _unconfirmedData;
         public Miner Before;
         public Miner Next;
 
