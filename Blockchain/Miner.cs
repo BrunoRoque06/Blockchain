@@ -4,12 +4,12 @@ namespace Blockchain
 {
     public class Miner
     {
+        public Miner Before;
+        public Miner Next;
         public Blockchain Blockchain { get; }
         private IBlockFactory _blockFactory;
         private IFifoStack _unconfirmedData;
-        public Miner Before;
-        public Miner Next;
-
+        
         public Miner(IBlockFactory blockFactory)
         {
             _blockFactory = blockFactory;
@@ -41,6 +41,12 @@ namespace Blockchain
         {
             var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(), data);
             Blockchain.AddBlock(newBlock);
+        }
+
+        public object GetUnconfirmedData()
+        {
+
+            return string.Empty;
         }
     }
 }

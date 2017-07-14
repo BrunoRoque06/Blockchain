@@ -2,7 +2,7 @@
 {
     public interface IFifoStack
     {
-        void AddData(string data);
-        string GetData();
+        void AddData(object data);
+        object GetData();
     }
 }

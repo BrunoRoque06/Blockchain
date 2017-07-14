@@ -1,29 +1,30 @@
 ﻿using Blockchain.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Blockchain
 {
     public class UnconfirmedData : IFifoStack
     {
-        private List<string> _datas;
+        private List<object> _datas;
 
         public UnconfirmedData()
         {
-            _datas = new List<string>();
+            _datas = new List<object>();
         }
 
-        public void AddData(string data)
+        public void AddData(object data)
         {
             _datas.Add(data);
         }
 
-        public string GetData()
+        public object GetData()
         {
-            string data = null;
+            object data = null;
 
             if (_datas.Count > 0)
             {
-                data = _datas[0];
+                data = _datas.ElementAt(0);
                 _datas.RemoveAt(0);
             }
 
