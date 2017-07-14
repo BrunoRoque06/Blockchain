@@ -10,6 +10,7 @@ namespace Blockchain.Tests
         Miner _miner;
         Block _genesisBlock;
         Block _dummyBlock;
+        Mock<IBlockFactory> blockFactoryMock;
 
         [SetUp]
         public void BeforeTests()
@@ -28,13 +29,13 @@ namespace Blockchain.Tests
                 "ImDummy",
                 0);
 
-            Mock<IBlockFactory> blockFactory = new Mock<IBlockFactory>();
+            blockFactoryMock = new Mock<IBlockFactory>();
 
-            blockFactory.Setup(h => h.GenerateGenesisBlock()).Returns(_genesisBlock);
-            blockFactory.Setup(h => h.GenerateNextBlock(It.IsAny<Block>(),
+            blockFactoryMock.Setup(h => h.GenerateGenesisBlock()).Returns(_genesisBlock);
+            blockFactoryMock.Setup(h => h.GenerateNextBlock(It.IsAny<Block>(),
                 It.IsAny<string>())).Returns(_dummyBlock);
 
-            _miner = new Miner(blockFactory.Object);
+            _miner = new Miner(blockFactoryMock.Object);
         }
 
         [Test]
@@ -58,7 +59,7 @@ namespace Blockchain.Tests
         [Test]
         public void Test_the_creation_of_a_miner_to_have_his_pointers_set_to_null()
         {
-            var miner = new Miner(new BlockFactory(new HashEstimator()));
+            var miner = new Miner(blockFactoryMock.Object);
 
             Assert.That(miner.Before, Is.EqualTo(null));
             Assert.That(miner.Next, Is.EqualTo(null));
@@ -67,8 +68,8 @@ namespace Blockchain.Tests
         [Test]
         public void Test_the_creation_of_two_miners_to_be_connected()
         {
-            var firstMiner = new Miner(new BlockFactory(new HashEstimator()));
-            var secondMiner = new Miner(new BlockFactory(new HashEstimator()), firstMiner);
+            var firstMiner = new Miner(blockFactoryMock.Object);
+            var secondMiner = new Miner(blockFactoryMock.Object, firstMiner);
 
             Assert.That(firstMiner.Before, Is.EqualTo(null));
             Assert.That(firstMiner.Next, Is.EqualTo(secondMiner));
@@ -79,9 +80,9 @@ namespace Blockchain.Tests
         [Test]
         public void Test_the_creation_of_tree_miners_to_be_connected()
         {
-            var firstMiner = new Miner(new BlockFactory(new HashEstimator()));
-            var thirdMiner = new Miner(new BlockFactory(new HashEstimator()), firstMiner);
-            var secondMiner = new Miner(new BlockFactory(new HashEstimator()), firstMiner);
+            var firstMiner = new Miner(blockFactoryMock.Object);
+            var thirdMiner = new Miner(blockFactoryMock.Object, firstMiner);
+            var secondMiner = new Miner(blockFactoryMock.Object, firstMiner);
 
             Assert.That(firstMiner.Before, Is.EqualTo(null));
             Assert.That(firstMiner.Next, Is.EqualTo(secondMiner));
@@ -89,6 +90,12 @@ namespace Blockchain.Tests
             Assert.That(secondMiner.Next, Is.EqualTo(thirdMiner));
             Assert.That(thirdMiner.Before, Is.EqualTo(secondMiner));
             Assert.That(thirdMiner.Next, Is.EqualTo(null));
+        }
+
+        [Test]
+        public void Test_get_data_to_return_an_object()
+        {
+            var miner = new Miner(blockFactoryMock.Object);
         }
     }
 }
