@@ -21,25 +21,28 @@ namespace Blockchain
                 0);
         }
 
-        public Block GenerateNextBlock(Block lastBlock, string dataNewBlock)
+        public Block GenerateNextBlock(Block lastBlock,
+            string dataNewBlock,
+            int nonce)
         {
             var nextIndex = lastBlock.Index + 1;
+            var date = DateTime.Now;
 
             var dummyBlock = new Block(nextIndex,
-                DateTime.Now,
+                date,
                 lastBlock.Hash,
                 string.Empty,
                 dataNewBlock,
-                0);
+                nonce);
 
             var newHash = _hashEstimator.Estimate(dummyBlock);
 
             return new Block(nextIndex,
-                DateTime.Now,
+                date,
                 lastBlock.Hash,
                 newHash,
                 dataNewBlock,
-                0);
+                nonce);
         }
     }
 }

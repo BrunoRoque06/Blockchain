@@ -35,7 +35,7 @@ namespace Blockchain.Tests
             _blockFactoryMock = new Mock<IBlockFactory>();
             _blockFactoryMock.Setup(e => e.GenerateGenesisBlock()).Returns(_genesisBlock);
             _blockFactoryMock.Setup(e => e.GenerateNextBlock(It.IsAny<Block>(),
-                It.IsAny<string>())).Returns(_dummyBlock);
+                It.IsAny<string>(), It.IsAny<int>())).Returns(_dummyBlock);
 
             _unfonfirmedDataStack = new Mock<IFifoStack>();
             _unfonfirmedDataStack.Setup(e => e.GetData()).Returns(_data);

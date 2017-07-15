@@ -42,7 +42,8 @@ namespace Blockchain
 
         public Block Mine(string data)
         {
-            var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(), data);
+            var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
+                data, 0);
 
             if (DoesBlockSolveFunction(newBlock))
             {
@@ -56,12 +57,11 @@ namespace Blockchain
         {
             bool result;
 
-            var firstThreeDigits = 0;
-
-            if (Int32.TryParse(block.Hash.Substring(0, 3), out firstThreeDigits))
+            if (Int32.TryParse(block.Hash.Substring(0, 3), out int firstThreeDigits))
             {
                 result = firstThreeDigits < 100 ? true : false;
-            } else
+            }
+            else
             {
                 result = false;
             }
@@ -72,12 +72,6 @@ namespace Blockchain
         public object GetUnconfirmedData()
         {
             return _unconfirmedDataFifo.GetData();
-        }
-
-        public bool SolveBlock()
-        {
-
-            return false;
         }
     }
 }
