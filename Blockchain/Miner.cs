@@ -53,6 +53,25 @@ namespace Blockchain
             return newBlock;
         }
 
+        public Block SolveFunction(object data)
+        {
+            var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
+                    data, 0);
+
+            for (var i = 1; i < 1000; i++)
+            {
+                newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
+                    data, i);
+
+                if (DoesBlockSolveFunction(newBlock))
+                {
+                    break;
+                }
+            }
+
+            return newBlock;
+        }
+        
         public bool DoesBlockSolveFunction(Block block)
         {
             bool result;

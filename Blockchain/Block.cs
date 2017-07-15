@@ -8,14 +8,14 @@ namespace Blockchain
         public DateTime DateTime { get; }
         public string PreviousHash { get; }
         public string Hash { get; }
-        public string Data { get; }
+        public object Data { get; }
         public int Nonce { get; }
 
         public Block(int index,
             DateTime dateTime,
             string previousHash,
             string hash,
-            string data,
+            object data,
             int nonce)
         {
             Index = index;

@@ -22,7 +22,7 @@ namespace Blockchain
         }
 
         public Block GenerateNextBlock(Block lastBlock,
-            string dataNewBlock,
+            object dataNewBlock,
             int nonce)
         {
             var nextIndex = lastBlock.Index + 1;
