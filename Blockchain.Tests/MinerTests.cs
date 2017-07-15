@@ -210,11 +210,28 @@ namespace Blockchain.Tests
         }
 
         [Test]
-        public void Test_add_block_to_return_true_if_nonce_higher_than_0()
+        public void Test_add_block_to_return_false_if_voidblock_is_send()
         {
             var voidBlock = new VoidBlock();
+            var miner = new Miner(_blockFactoryMock.Object,
+                _unconfirmedDataStack.Object);
 
+            var result = miner.AddBlockToBlockchain(voidBlock);
 
+            Assert.That(result, Is.False);
+            Assert.That(miner.Blockchain.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Test_add_block_to_return_true_if_block_is_send()
+        {
+            var miner = new Miner(_blockFactoryMock.Object,
+                _unconfirmedDataStack.Object);
+
+            var result = miner.AddBlockToBlockchain(_dummyBlock);
+
+            Assert.That(result, Is.True);
+            Assert.That(miner.Blockchain.Count(), Is.EqualTo(2));
         }
     }
 }

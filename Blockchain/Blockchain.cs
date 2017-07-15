@@ -28,5 +28,10 @@ namespace Blockchain
         {
             return Blocks.Select(e => e.Index).Contains(index);
         }
+
+        public int Count()
+        {
+            return Blocks.Count();
+        }
     }
 }

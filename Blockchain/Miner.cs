@@ -53,10 +53,17 @@ namespace Blockchain
             return newBlock;
         }
 
-        public void AddBlockToBlockchain()
+        public bool AddBlockToBlockchain(IBlock block)
         {
+            bool isAdded = false;
 
-            return;
+            if (block is Block)
+            {
+                isAdded = true;
+                Blockchain.AddBlock(block);
+            }
+
+            return isAdded;
         }
 
         public IBlock SolveFunction(object data)
