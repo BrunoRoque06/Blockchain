@@ -33,13 +33,11 @@ namespace Blockchain.Tests
                 0);
 
             _blockFactoryMock = new Mock<IBlockFactory>();
-
             _blockFactoryMock.Setup(e => e.GenerateGenesisBlock()).Returns(_genesisBlock);
             _blockFactoryMock.Setup(e => e.GenerateNextBlock(It.IsAny<Block>(),
                 It.IsAny<string>())).Returns(_dummyBlock);
 
             _unfonfirmedDataStack = new Mock<IFifoStack>();
-
             _unfonfirmedDataStack.Setup(e => e.GetData()).Returns(_data);
 
             _miner = new Miner(_blockFactoryMock.Object,
@@ -54,9 +52,9 @@ namespace Blockchain.Tests
         }
 
         [Test]
-        public void Test_the_new_block_added_to_be_the_dummy_block_generated_by_the_mock()
+        public void Test_mine_method_to_add_a_block_if_it_solves_the_function()
         {
-            _miner.AddBlock("DoesNotMatter");
+            _miner.Mine("NewData");
 
             var lastBlock = _miner.Blockchain.GetLastBlock();
 
@@ -119,5 +117,52 @@ namespace Blockchain.Tests
 
             Assert.That(result, Is.EqualTo(_data));
         }
+
+        [Test]
+        public void Test_block_function_to_return_true_since_the_hash_of_the_block_start_with_a_value_lower_than_100()
+        {
+            var block = new Block(0,
+                DateTime.Today,
+                string.Empty,
+                "050356431354684",
+                string.Empty,
+                0);
+
+            var result = _miner.DoesBlockSolveFunction(block);
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void Test_block_function_to_return_false_since_the_hash_of_the_block_is_higher_than_100()
+        {
+            var block = new Block(0,
+                DateTime.Today,
+                string.Empty,
+                "80035",
+                string.Empty,
+                0);
+
+            var result = _miner.DoesBlockSolveFunction(block);
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void Test_block_function_to_return_true_with_an_hash_of_99()
+        {
+            var block = new Block(0,
+                DateTime.Today,
+                string.Empty,
+                "09980035",
+                string.Empty,
+                0);
+
+            var result = _miner.DoesBlockSolveFunction(block);
+
+            Assert.That(result, Is.True);
+        }
+
+
     }
 }

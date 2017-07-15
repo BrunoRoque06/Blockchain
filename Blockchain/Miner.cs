@@ -1,4 +1,5 @@
-﻿using Blockchain.Interfaces;
+﻿using System;
+using Blockchain.Interfaces;
 
 namespace Blockchain
 {
@@ -39,15 +40,44 @@ namespace Blockchain
             minerBefore.Next = this;
         }
 
-        public void AddBlock(string data)
+        public Block Mine(string data)
         {
             var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(), data);
-            Blockchain.AddBlock(newBlock);
+
+            if (DoesBlockSolveFunction(newBlock))
+            {
+
+            }
+
+            return newBlock;
+        }
+
+        public bool DoesBlockSolveFunction(Block block)
+        {
+            bool result;
+
+            var firstThreeDigits = 0;
+
+            if (Int32.TryParse(block.Hash.Substring(0, 3), out firstThreeDigits))
+            {
+                result = firstThreeDigits < 100 ? true : false;
+            } else
+            {
+                result = false;
+            }
+
+            return result;
         }
 
         public object GetUnconfirmedData()
         {
             return _unconfirmedDataFifo.GetData();
+        }
+
+        public bool SolveBlock()
+        {
+
+            return false;
         }
     }
 }
