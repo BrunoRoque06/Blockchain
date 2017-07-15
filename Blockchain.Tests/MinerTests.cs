@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Blockchain.Interfaces;
+using Moq;
 using NUnit.Framework;
 using System;
 
@@ -10,7 +11,9 @@ namespace Blockchain.Tests
         Miner _miner;
         Block _genesisBlock;
         Block _dummyBlock;
-        Mock<IBlockFactory> blockFactoryMock;
+        Mock<IBlockFactory> _blockFactoryMock;
+        Mock<IFifoStack> _unfonfirmedDataStack;
+        string _data = "ThisIsData";
 
         [SetUp]
         public void BeforeTests()
@@ -29,13 +32,18 @@ namespace Blockchain.Tests
                 "ImDummy",
                 0);
 
-            blockFactoryMock = new Mock<IBlockFactory>();
+            _blockFactoryMock = new Mock<IBlockFactory>();
 
-            blockFactoryMock.Setup(h => h.GenerateGenesisBlock()).Returns(_genesisBlock);
-            blockFactoryMock.Setup(h => h.GenerateNextBlock(It.IsAny<Block>(),
+            _blockFactoryMock.Setup(e => e.GenerateGenesisBlock()).Returns(_genesisBlock);
+            _blockFactoryMock.Setup(e => e.GenerateNextBlock(It.IsAny<Block>(),
                 It.IsAny<string>())).Returns(_dummyBlock);
 
-            _miner = new Miner(blockFactoryMock.Object);
+            _unfonfirmedDataStack = new Mock<IFifoStack>();
+
+            _unfonfirmedDataStack.Setup(e => e.GetData()).Returns(_data);
+
+            _miner = new Miner(_blockFactoryMock.Object,
+                _unfonfirmedDataStack.Object);
         }
 
         [Test]
@@ -59,7 +67,8 @@ namespace Blockchain.Tests
         [Test]
         public void Test_the_creation_of_a_miner_to_have_his_pointers_set_to_null()
         {
-            var miner = new Miner(blockFactoryMock.Object);
+            var miner = new Miner(_blockFactoryMock.Object,
+                _unfonfirmedDataStack.Object);
 
             Assert.That(miner.Before, Is.EqualTo(null));
             Assert.That(miner.Next, Is.EqualTo(null));
@@ -68,8 +77,11 @@ namespace Blockchain.Tests
         [Test]
         public void Test_the_creation_of_two_miners_to_be_connected()
         {
-            var firstMiner = new Miner(blockFactoryMock.Object);
-            var secondMiner = new Miner(blockFactoryMock.Object, firstMiner);
+            var firstMiner = new Miner(_blockFactoryMock.Object,
+                _unfonfirmedDataStack.Object);
+            var secondMiner = new Miner(_blockFactoryMock.Object,
+                _unfonfirmedDataStack.Object,
+                firstMiner);
 
             Assert.That(firstMiner.Before, Is.EqualTo(null));
             Assert.That(firstMiner.Next, Is.EqualTo(secondMiner));
@@ -80,9 +92,14 @@ namespace Blockchain.Tests
         [Test]
         public void Test_the_creation_of_tree_miners_to_be_connected()
         {
-            var firstMiner = new Miner(blockFactoryMock.Object);
-            var thirdMiner = new Miner(blockFactoryMock.Object, firstMiner);
-            var secondMiner = new Miner(blockFactoryMock.Object, firstMiner);
+            var firstMiner = new Miner(_blockFactoryMock.Object,
+                _unfonfirmedDataStack.Object);
+            var thirdMiner = new Miner(_blockFactoryMock.Object,
+                _unfonfirmedDataStack.Object,
+                firstMiner);
+            var secondMiner = new Miner(_blockFactoryMock.Object,
+                _unfonfirmedDataStack.Object,
+                firstMiner);
 
             Assert.That(firstMiner.Before, Is.EqualTo(null));
             Assert.That(firstMiner.Next, Is.EqualTo(secondMiner));
@@ -93,9 +110,14 @@ namespace Blockchain.Tests
         }
 
         [Test]
-        public void Test_get_data_to_return_an_object()
+        public void Test_get_unconfirmed_data_to_return_the_one_mocked()
         {
-            var miner = new Miner(blockFactoryMock.Object);
+            var miner = new Miner(_blockFactoryMock.Object,
+                _unfonfirmedDataStack.Object);
+
+            var result = miner.GetUnconfirmedData();
+
+            Assert.That(result, Is.EqualTo(_data));
         }
     }
 }

@@ -8,18 +8,20 @@ namespace Blockchain
         public Miner Next;
         public Blockchain Blockchain { get; }
         private IBlockFactory _blockFactory;
-        private IFifoStack _unconfirmedData;
+        private IFifoStack _unconfirmedDataFifo;
         
-        public Miner(IBlockFactory blockFactory)
+        public Miner(IBlockFactory blockFactory, IFifoStack unconfirmedData)
         {
             _blockFactory = blockFactory;
+            _unconfirmedDataFifo = unconfirmedData;
             var genesisBlock = _blockFactory.GenerateGenesisBlock();
             Blockchain = new Blockchain(genesisBlock);
         }
 
-        public Miner(IBlockFactory blockFactory, Miner minerBefore)
+        public Miner(IBlockFactory blockFactory, IFifoStack unconfirmedData, Miner minerBefore)
         {
             _blockFactory = blockFactory;
+            _unconfirmedDataFifo = unconfirmedData;
             var genesisBlock = _blockFactory.GenerateGenesisBlock();
             Blockchain = new Blockchain(genesisBlock);
 
@@ -45,8 +47,7 @@ namespace Blockchain
 
         public object GetUnconfirmedData()
         {
-
-            return string.Empty;
+            return _unconfirmedDataFifo.GetData();
         }
     }
 }

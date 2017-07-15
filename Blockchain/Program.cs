@@ -6,7 +6,10 @@ namespace Blockchain
     {
         static void Main(string[] args)
         {
-            var individual = new Miner(new BlockFactory(new HashEstimator()));
+            var individual = new Miner(
+                new BlockFactory(
+                    new HashEstimator()),
+                    new UnconfirmedDataFifo());
 
             individual.AddBlock("First Block!");
             individual.AddBlock("Second Block!");

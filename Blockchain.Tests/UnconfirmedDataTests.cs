@@ -8,7 +8,7 @@ namespace Blockchain.Tests
         [Test]
         public void Test_get_data_to_return_the_same_value_as_the_added_one()
         {
-            var unconfirmedData = new UnconfirmedData();
+            var unconfirmedData = new UnconfirmedDataFifo();
             var data = "ThisIsData";
 
             unconfirmedData.AddData(data);
@@ -20,7 +20,7 @@ namespace Blockchain.Tests
         [Test]
         public void Test_get_data_with_an_empty_pile_to_return_null()
         {
-            var unconfirmedData = new UnconfirmedData();
+            var unconfirmedData = new UnconfirmedDataFifo();
 
             var result = unconfirmedData.GetData();
 
@@ -30,7 +30,7 @@ namespace Blockchain.Tests
         [Test]
         public void Test_get_data_to_respect_the_order_of_insertion()
         {
-            var unconfirmedData = new UnconfirmedData();
+            var unconfirmedData = new UnconfirmedDataFifo();
             var data1 = "First";
             var data2 = "Second";
 
