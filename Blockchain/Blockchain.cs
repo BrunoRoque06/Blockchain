@@ -22,5 +22,10 @@ namespace Blockchain
         {
             return Blocks.Last();
         }
+
+        public bool ContainsIndex(int index)
+        {
+            return Blocks.Select(e => e.Index).Contains(index);
+        }
     }
 }

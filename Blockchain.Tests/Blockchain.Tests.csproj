@@ -57,6 +57,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockChainTests.cs" />
     <Compile Include="BlockFactoryTests.cs" />
     <Compile Include="MinerTests.cs" />
     <Compile Include="HashEstimatorTests.cs" />
