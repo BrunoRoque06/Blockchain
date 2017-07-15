@@ -40,7 +40,7 @@ namespace Blockchain
             minerBefore.Next = this;
         }
 
-        public Block Mine(string data)
+        public IBlock MineBlock(string data)
         {
             var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
                 data, 0);
@@ -53,10 +53,15 @@ namespace Blockchain
             return newBlock;
         }
 
-        public Block SolveFunction(object data)
+        public void AddBlockToBlockchain()
         {
-            var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
-                    data, -1);
+
+            return;
+        }
+
+        public IBlock SolveFunction(object data)
+        {
+            IBlock newBlock = new VoidBlock();
 
             for (var i = 0; i < 1000; i++)
             {
@@ -72,7 +77,7 @@ namespace Blockchain
             return newBlock;
         }
         
-        public bool DoesBlockSolveFunction(Block block)
+        public bool DoesBlockSolveFunction(IBlock block)
         {
             bool result;
 

@@ -54,7 +54,7 @@ namespace Blockchain.Tests
         [Test]
         public void Test_mine_method_to_add_a_block_if_it_solves_the_function()
         {
-            _miner.Mine("NewData");
+            _miner.MineBlock("NewData");
 
             var lastBlock = _miner.Blockchain.GetLastBlock();
 
@@ -194,7 +194,7 @@ namespace Blockchain.Tests
                 string.Empty,
                 hash,
                 "ImDummy",
-                0);
+                1);
             var blockFactoryMock = new Mock<IBlockFactory>();
             blockFactoryMock.Setup(e => e.GenerateNextBlock(It.IsAny<Block>(),
                 It.IsAny<string>(), 0)).Returns(_dummyBlock);
@@ -207,6 +207,14 @@ namespace Blockchain.Tests
 
             Assert.That(newBlock.Nonce, Is.EqualTo(1));
             Assert.That(newBlock.Hash, Is.EqualTo(hash));
+        }
+
+        [Test]
+        public void Test_add_block_to_return_true_if_nonce_higher_than_0()
+        {
+            var voidBlock = new VoidBlock();
+
+
         }
     }
 }

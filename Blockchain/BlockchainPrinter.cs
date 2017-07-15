@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blockchain.Interfaces;
+using System;
 
 namespace Blockchain
 {
@@ -12,7 +13,7 @@ namespace Blockchain
             }
         }
 
-        private void PrintBlock(Block block)
+        private void PrintBlock(IBlock block)
         {
             Console.WriteLine("# " + block.Index);
             Console.WriteLine("Date:\t\t" + block.DateTime);

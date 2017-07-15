@@ -11,9 +11,9 @@ namespace Blockchain
                     new HashEstimator()),
                     new UnconfirmedDataFifo());
 
-            individual.Mine("First Block!");
-            individual.Mine("Second Block!");
-            individual.Mine("Third Block!");
+            individual.MineBlock("First Block!");
+            individual.MineBlock("Second Block!");
+            individual.MineBlock("Third Block!");
 
             var ledgePrinter = new BlockchainPrinter();
             ledgePrinter.Print(individual.Blockchain);

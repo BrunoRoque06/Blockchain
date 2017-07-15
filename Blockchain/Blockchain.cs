@@ -1,24 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using Blockchain.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Blockchain
 {
     public class Blockchain
     {
-        public List<Block> Blocks { get; }
+        public List<IBlock> Blocks { get; }
 
-        public Blockchain(Block genesisBlock)
+        public Blockchain(IBlock genesisBlock)
         {
-            Blocks = new List<Block>();
+            Blocks = new List<IBlock>();
             AddBlock(genesisBlock);
         }
 
-        public void AddBlock(Block newBlock)
+        public void AddBlock(IBlock newBlock)
         {
             Blocks.Add(newBlock);
         }
 
-        public Block GetLastBlock()
+        public IBlock GetLastBlock()
         {
             return Blocks.Last();
         }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Blockchain.Interfaces;
+using System;
 
 namespace Blockchain
 {
-    public class Block
+    public class Block : IBlock
     {
         public int Index { get; }
         public DateTime DateTime { get; }

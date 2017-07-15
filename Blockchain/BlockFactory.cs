@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blockchain.Interfaces;
+using System;
 
 namespace Blockchain
 {
@@ -11,7 +12,7 @@ namespace Blockchain
             _hashEstimator = hashEstimator;
         }
 
-        public Block GenerateGenesisBlock()
+        public IBlock GenerateGenesisBlock()
         {
             return new Block(0,
                 DateTime.Now,
@@ -21,7 +22,7 @@ namespace Blockchain
                 0);
         }
 
-        public Block GenerateNextBlock(Block lastBlock,
+        public IBlock GenerateNextBlock(IBlock lastBlock,
             object dataNewBlock,
             int nonce)
         {

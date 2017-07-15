@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="BlockFactory.cs" />
+    <Compile Include="Interfaces\IBlock.cs" />
     <Compile Include="Interfaces\IFifoStack.cs" />
     <Compile Include="Miner.cs" />
     <Compile Include="Blockchain.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnconfirmedDataFifo.cs" />
+    <Compile Include="VoidBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
