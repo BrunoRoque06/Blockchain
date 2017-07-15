@@ -233,5 +233,47 @@ namespace Blockchain.Tests
             Assert.That(result, Is.True);
             Assert.That(miner.Blockchain.Count(), Is.EqualTo(2));
         }
+
+        [Test]
+        public void Test_receive_block_to_not_add_it_index_is_0()
+        {
+            var miner = new Miner(_blockFactoryMock.Object,
+                _unconfirmedDataStack.Object);
+
+            var block = new Block(0,
+                DateTime.MaxValue,
+                string.Empty,
+                string.Empty,
+                "ImDummy",
+                1);
+
+            miner.ReceiveBlock(block);
+
+            Assert.That(miner.Blockchain.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Test_broadcast_and_receive_block_to_3_miners()
+        {
+            var firstMiner = new Miner(_blockFactoryMock.Object,
+                _unconfirmedDataStack.Object);
+            var secondMiner = new Miner(_blockFactoryMock.Object,
+                _unconfirmedDataStack.Object, firstMiner);
+            var thirdMiner = new Miner(_blockFactoryMock.Object,
+                _unconfirmedDataStack.Object, firstMiner);
+
+            var block = new Block(1,
+                DateTime.MaxValue,
+                string.Empty,
+                string.Empty,
+                "ImDummy",
+                1);
+
+            firstMiner.BroadCastBlock(block);
+
+            Assert.That(firstMiner.Blockchain.Count(), Is.EqualTo(2));
+            Assert.That(secondMiner.Blockchain.Count(), Is.EqualTo(2));
+            Assert.That(thirdMiner.Blockchain.Count(), Is.EqualTo(2));
+        }
     }
 }

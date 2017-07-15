@@ -53,6 +53,27 @@ namespace Blockchain
             return newBlock;
         }
 
+        public void BroadCastBlock(IBlock block)
+        {
+            if (Before != null)
+            {
+                Before.ReceiveBlock(block);
+            }
+            if (Next != null)
+            {
+                Next.ReceiveBlock(block);
+            }
+        }
+
+        public void ReceiveBlock(IBlock block)
+        {
+            if(!Blockchain.ContainsIndex(block.Index))
+            {
+                Blockchain.AddBlock(block);
+                BroadCastBlock(block);
+            }
+        }
+
         public bool AddBlockToBlockchain(IBlock block)
         {
             bool isAdded = false;
