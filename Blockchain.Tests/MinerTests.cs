@@ -28,7 +28,7 @@ namespace Blockchain.Tests
             _dummyBlock = new Block(1,
                 DateTime.MaxValue,
                 string.Empty,
-                string.Empty,
+                "999",
                 "ImDummy",
                 0);
 
