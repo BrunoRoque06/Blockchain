@@ -10,7 +10,7 @@ namespace Blockchain
         public Blockchain Blockchain { get; }
         private IBlockFactory _blockFactory;
         private IFifoQueue _unconfirmedDataFifo;
-        
+
         public Miner(IBlockFactory blockFactory, IFifoQueue unconfirmedData)
         {
             _blockFactory = blockFactory;
@@ -65,22 +65,31 @@ namespace Blockchain
 
         public void ReceiveBlock(IBlock block)
         {
-            if(!Blockchain.ContainsIndex(block.Index))
+            if (!Blockchain.ContainsIndex(block.Index))
             {
                 if (ValidateBlock(block))
                 {
                     Blockchain.AddBlock(block);
                     BroadCastBlock(block);
-                } else
+                }
+                else
                 {
                     Console.WriteLine("Someone sent an invalid Block!!!");
                 }
             }
         }
 
-        private bool ValidateBlock(IBlock block)
+        public bool ValidateBlock(IBlock block)
         {
-            return block.Hash == _blockFactory.GetBlockHash(block);
+            var isBlockValid = false;
+
+            if (block.PreviousHash == Blockchain.GetLastBlock().Hash &&
+                block.Hash == _blockFactory.GetBlockHash(block))
+            {
+                isBlockValid = true;
+            }
+
+            return isBlockValid;
         }
 
         public bool AddBlockToBlockchain(IBlock block)
@@ -114,7 +123,7 @@ namespace Blockchain
 
             return newBlock;
         }
-        
+
         public bool DoesBlockSolveFunction(IBlock block)
         {
             bool result;

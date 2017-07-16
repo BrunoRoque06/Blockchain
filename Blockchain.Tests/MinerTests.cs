@@ -290,5 +290,20 @@ namespace Blockchain.Tests
 
             Assert.That(block is VoidBlock, Is.True);
         }
+
+        [Test]
+        public void Test_a_block_to_be_valid_only_if_previousHash_is_equal_to_last_block_hash()
+        {
+            var block = new Block(0,
+                new DateTime(),
+                "InvalidHash",
+                string.Empty,
+                string.Empty,
+                0);
+
+            var result = _miner.ValidateBlock(block);
+
+            Assert.That(result, Is.EqualTo(false));
+        }
     }
 }
