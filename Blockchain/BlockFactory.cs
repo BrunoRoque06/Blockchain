@@ -45,5 +45,10 @@ namespace Blockchain
                 dataNewBlock,
                 nonce);
         }
+
+        public string GetBlockHash(IBlock block)
+        {
+            return _hashEstimator.Estimate(block);
+        }
     }
 }

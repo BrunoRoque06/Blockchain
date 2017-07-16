@@ -52,17 +52,6 @@ namespace Blockchain.Tests
         }
 
         [Test]
-        public void Test_mine_method_to_add_a_block_if_it_solves_the_function()
-        {
-            _miner.MineBlock("NewData");
-
-            var lastBlock = _miner.Blockchain.GetLastBlock();
-
-            Assert.That(lastBlock.Index, Is.EqualTo(1));
-            Assert.That(lastBlock.Data, Is.EqualTo("ImDummy"));
-        }
-
-        [Test]
         public void Test_the_creation_of_a_miner_to_have_his_pointers_set_to_null()
         {
             var miner = new Miner(_blockFactoryMock.Object,
@@ -255,6 +244,11 @@ namespace Blockchain.Tests
         [Test]
         public void Test_broadcast_and_receive_block_to_3_miners()
         {
+            _blockFactoryMock = new Mock<IBlockFactory>();
+            _blockFactoryMock.Setup(e => e.GenerateGenesisBlock()).Returns(_genesisBlock);
+            _blockFactoryMock.Setup(e => e.GetBlockHash(It.IsAny<Block>()))
+                .Returns(string.Empty);
+
             var firstMiner = new Miner(_blockFactoryMock.Object,
                 _unconfirmedDataStack.Object);
             var secondMiner = new Miner(_blockFactoryMock.Object,

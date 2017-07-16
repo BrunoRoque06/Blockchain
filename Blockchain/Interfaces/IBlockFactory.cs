@@ -6,5 +6,6 @@ namespace Blockchain
     {
         IBlock GenerateGenesisBlock();
         IBlock GenerateNextBlock(IBlock lastBlock, object dataNewBlock, int nonce);
+        string GetBlockHash(IBlock block);
     }
 }

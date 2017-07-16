@@ -1,7 +1,9 @@
-﻿namespace Blockchain
+﻿using Blockchain.Interfaces;
+
+namespace Blockchain
 {
     public interface IHashEstimator
     {
-        string Estimate(Block block);
+        string Estimate(IBlock block);
     }
 }

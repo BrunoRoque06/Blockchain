@@ -6,17 +6,21 @@ namespace Blockchain
     {
         static void Main(string[] args)
         {
-            var individual = new Miner(
-                new BlockFactory(
-                    new HashEstimator()),
-                    new UnconfirmedDataFifo());
+            var blockFactory = new BlockFactory(new HashEstimator());
+            var unconfirmedData = new UnconfirmedDataFifo();
 
-            individual.MineBlock("First Block!");
-            individual.MineBlock("Second Block!");
-            individual.MineBlock("Third Block!");
+            var firstMiner = new Miner(blockFactory, unconfirmedData);
+            var secondMiner = new Miner(blockFactory, unconfirmedData, firstMiner);
+            var thirdMiner = new Miner(blockFactory, unconfirmedData, secondMiner);
 
-            var ledgePrinter = new BlockchainPrinter();
-            ledgePrinter.Print(individual.Blockchain);
+            unconfirmedData.AddData("Hund!");
+
+            firstMiner.MineBlock();
+
+            var blockchainPrinter = new BlockchainPrinter();
+            blockchainPrinter.Print(firstMiner.Blockchain);
+            blockchainPrinter.Print(secondMiner.Blockchain);
+            blockchainPrinter.Print(thirdMiner.Blockchain);
         }
     }
 }

@@ -40,17 +40,15 @@ namespace Blockchain
             minerBefore.Next = this;
         }
 
-        public IBlock MineBlock(string data)
+        public void MineBlock()
         {
-            var newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
-                data, 0);
+            var data = GetUnconfirmedData();
+            var block = SolveFunction(data);
 
-            if (DoesBlockSolveFunction(newBlock))
+            if (AddBlockToBlockchain(block))
             {
-
+                BroadCastBlock(block);
             }
-
-            return newBlock;
         }
 
         public void BroadCastBlock(IBlock block)
@@ -69,8 +67,11 @@ namespace Blockchain
         {
             if(!Blockchain.ContainsIndex(block.Index))
             {
-                Blockchain.AddBlock(block);
-                BroadCastBlock(block);
+                if (block.Hash == _blockFactory.GetBlockHash(block))
+                {
+                    Blockchain.AddBlock(block);
+                    BroadCastBlock(block);
+                }
             }
         }
 
