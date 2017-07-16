@@ -1,7 +1,7 @@
 # Blockchain
 
 ## Overview
-This project consists on a simple implementation of a blockchain, managed by a set of miners. Blockchain "guarantees" the order of a given set of event. If these events are transations (Bitcoin), it solves the double spending problem. Another important element in these systems is Digital Signatures, which guarantees authentication, non-repudiation, and integrity.
+This project consists on a simple implementation of a blockchain, managed by a group of miners. Blockchain "guarantees" the order of a given set of event. If these events are transations (Bitcoin), it solves the double spending problem. Another important element in these systems is Digital Signatures, which guarantees authentication, non-repudiation, and integrity.
 
 Routine:
 * Data (digitally signed) is sent to the Unconfirmed Data (which is a FIFO);
