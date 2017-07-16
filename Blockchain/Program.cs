@@ -13,7 +13,7 @@ namespace Blockchain
             var secondMiner = new Miner(blockFactory, unconfirmedData, firstMiner);
             var thirdMiner = new Miner(blockFactory, unconfirmedData, secondMiner);
 
-            var fakeBlock = new Block(0,
+            var fakeBlock = new Block(10,
                 DateTime.MinValue,
                 string.Empty,
                 string.Empty,
@@ -30,7 +30,7 @@ namespace Blockchain
             thirdMiner.MineBlock();
             firstMiner.MineBlock();
 
-            thirdMiner.BroadCastBlock(fakeBlock);
+            secondMiner.BroadCastBlock(fakeBlock);
 
             var blockchainPrinter = new BlockchainPrinter();
             blockchainPrinter.Print(firstMiner.Blockchain);

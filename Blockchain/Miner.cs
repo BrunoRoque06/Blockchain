@@ -67,12 +67,20 @@ namespace Blockchain
         {
             if(!Blockchain.ContainsIndex(block.Index))
             {
-                if (block.Hash == _blockFactory.GetBlockHash(block))
+                if (ValidateBlock(block))
                 {
                     Blockchain.AddBlock(block);
                     BroadCastBlock(block);
+                } else
+                {
+                    Console.WriteLine("Someone sent an invalid Block! I'm not broadcasting it!");
                 }
             }
+        }
+
+        private bool ValidateBlock(IBlock block)
+        {
+            return block.Hash == _blockFactory.GetBlockHash(block);
         }
 
         public bool AddBlockToBlockchain(IBlock block)

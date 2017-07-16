@@ -13,6 +13,8 @@ namespace Blockchain
             {
                 PrintBlock(block);
             }
+
+            Console.WriteLine();
         }
 
         private void PrintHeader()
