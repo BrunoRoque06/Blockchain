@@ -46,6 +46,11 @@ namespace Blockchain
                 nonce);
         }
 
+        public IBlock GenerateVoidBlock()
+        {
+            return new VoidBlock();
+        }
+
         public string GetBlockHash(IBlock block)
         {
             return _hashEstimator.Estimate(block);

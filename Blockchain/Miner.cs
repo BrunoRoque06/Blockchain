@@ -98,7 +98,7 @@ namespace Blockchain
 
         public IBlock SolveFunction(object data)
         {
-            IBlock newBlock = new VoidBlock();
+            IBlock newBlock = _blockFactory.GenerateVoidBlock();
 
             for (var i = 0; i < 100000; i++)
             {

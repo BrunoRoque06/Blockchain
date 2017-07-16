@@ -280,6 +280,8 @@ namespace Blockchain.Tests
                 It.IsAny<string>(), It.IsAny<int>())).Returns(_dummyBlock);
             _blockFactoryMock.Setup(e => e.GetBlockHash(It.IsAny<Block>()))
                 .Returns(string.Empty);
+            _blockFactoryMock.Setup(e => e.GenerateVoidBlock())
+                .Returns(new VoidBlock());
 
             var miner = new Miner(_blockFactoryMock.Object,
                 _unconfirmedDataStack.Object);

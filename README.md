@@ -6,7 +6,7 @@ This project consists on a simple implementation of a blockchain, managed by a g
 Routine:
 * Data (digitally signed) is sent to the Unconfirmed Data (which is a FIFO);
 * A Miner takes an unconfirmed data entry;
-* Miner solves function, in this project a simple Left(Hash(block, nonce), 3) < 100. Function used for Bitcoin takes around ~10 minutes/block;
+* Miner solves function, in this project a simple Left(Hash(block, nonce), 3) < 100. Function used for Bitcoin takes around ~10 minutes/block to find a correct value for "nonce";
 * Miner broadcasts block;
 * Other miners receive the block, confirm the integrity of the block (hash validation), and add it to their blockchain;
 * If the block is not validated (hash), miners wont add it to their blockchain and wont broadcast it;
@@ -21,4 +21,4 @@ Main classes:
 * __Miner__, responsible for geting data, solving blocks, and broadcasting them. 
 
 ## UML
-![UmlBlockchain](https://user-images.githubusercontent.com/28269891/28243756-1d09a22a-69ce-11e7-9b6b-0f90fbe6d0ea.png)
+![umlblockchain](https://user-images.githubusercontent.com/28269891/28247206-b7b1087c-6a23-11e7-8353-361c35b6d67d.png)
