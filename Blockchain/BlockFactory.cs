@@ -18,7 +18,7 @@ namespace Blockchain
                 DateTime.Now,
                 string.Empty,
                 string.Empty,
-                "GenesisBlock",
+                "Genesis",
                 0);
         }
 

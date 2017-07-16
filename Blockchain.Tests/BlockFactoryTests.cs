@@ -68,7 +68,7 @@ namespace Blockchain.Tests
 
             Assert.That(genesisBlock.Index, Is.EqualTo(0));
             Assert.That(genesisBlock.PreviousHash, Is.EqualTo(string.Empty));
-            Assert.That(genesisBlock.Data, Is.EqualTo("GenesisBlock"));
+            Assert.That(genesisBlock.Data, Is.EqualTo("Genesis"));
         }
     }
 }

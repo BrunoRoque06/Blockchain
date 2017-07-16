@@ -13,9 +13,24 @@ namespace Blockchain
             var secondMiner = new Miner(blockFactory, unconfirmedData, firstMiner);
             var thirdMiner = new Miner(blockFactory, unconfirmedData, secondMiner);
 
-            unconfirmedData.AddData("Hund!");
+            var fakeBlock = new Block(0,
+                DateTime.MinValue,
+                string.Empty,
+                string.Empty,
+                "I'm not a valid block!!!",
+                0);
+
+            unconfirmedData.AddData("I");
+            unconfirmedData.AddData("love");
+            unconfirmedData.AddData("my");
+            unconfirmedData.AddData("dog!");
 
             firstMiner.MineBlock();
+            secondMiner.MineBlock();
+            thirdMiner.MineBlock();
+            firstMiner.MineBlock();
+
+            thirdMiner.BroadCastBlock(fakeBlock);
 
             var blockchainPrinter = new BlockchainPrinter();
             blockchainPrinter.Print(firstMiner.Blockchain);

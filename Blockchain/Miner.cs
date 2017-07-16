@@ -92,7 +92,7 @@ namespace Blockchain
         {
             IBlock newBlock = new VoidBlock();
 
-            for (var i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000000; i++)
             {
                 newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
                     data, i);
