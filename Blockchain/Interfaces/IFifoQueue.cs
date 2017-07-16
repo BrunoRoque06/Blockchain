@@ -1,6 +1,6 @@
 ﻿namespace Blockchain.Interfaces
 {
-    public interface IFifoStack
+    public interface IFifoQueue
     {
         void AddData(object data);
         object GetData();

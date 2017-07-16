@@ -13,7 +13,7 @@ namespace Blockchain.Tests
         Block _genesisBlock;
         Block _dummyBlock;
         Mock<IBlockFactory> _blockFactoryMock;
-        Mock<IFifoStack> _unconfirmedDataStack;
+        Mock<IFifoQueue> _unconfirmedDataStack;
         string _data = "ThisIsData";
 
         [SetUp]
@@ -38,7 +38,7 @@ namespace Blockchain.Tests
             _blockFactoryMock.Setup(e => e.GenerateNextBlock(It.IsAny<Block>(),
                 It.IsAny<string>(), It.IsAny<int>())).Returns(_dummyBlock);
 
-            _unconfirmedDataStack = new Mock<IFifoStack>();
+            _unconfirmedDataStack = new Mock<IFifoQueue>();
             _unconfirmedDataStack.Setup(e => e.GetData()).Returns(_data);
 
             _miner = new Miner(_blockFactoryMock.Object,

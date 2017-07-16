@@ -9,9 +9,9 @@ namespace Blockchain
         public Miner Next;
         public Blockchain Blockchain { get; }
         private IBlockFactory _blockFactory;
-        private IFifoStack _unconfirmedDataFifo;
+        private IFifoQueue _unconfirmedDataFifo;
         
-        public Miner(IBlockFactory blockFactory, IFifoStack unconfirmedData)
+        public Miner(IBlockFactory blockFactory, IFifoQueue unconfirmedData)
         {
             _blockFactory = blockFactory;
             _unconfirmedDataFifo = unconfirmedData;
@@ -19,7 +19,7 @@ namespace Blockchain
             Blockchain = new Blockchain(genesisBlock);
         }
 
-        public Miner(IBlockFactory blockFactory, IFifoStack unconfirmedData, Miner minerBefore)
+        public Miner(IBlockFactory blockFactory, IFifoQueue unconfirmedData, Miner minerBefore)
         {
             _blockFactory = blockFactory;
             _unconfirmedDataFifo = unconfirmedData;

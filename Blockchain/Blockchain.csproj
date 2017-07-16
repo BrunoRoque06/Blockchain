@@ -45,7 +45,7 @@
     <Compile Include="Block.cs" />
     <Compile Include="BlockFactory.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
-    <Compile Include="Interfaces\IFifoStack.cs" />
+    <Compile Include="Interfaces\IFifoQueue.cs" />
     <Compile Include="Miner.cs" />
     <Compile Include="Blockchain.cs" />
     <Compile Include="BlockchainPrinter.cs" />

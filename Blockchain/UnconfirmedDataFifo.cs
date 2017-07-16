@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Blockchain
 {
-    public class UnconfirmedDataFifo : IFifoStack
+    public class UnconfirmedDataFifo : IFifoQueue
     {
         private List<object> _datas;
 
