@@ -73,7 +73,7 @@ namespace Blockchain
                     BroadCastBlock(block);
                 } else
                 {
-                    Console.WriteLine("Someone sent an invalid Block! I'm not broadcasting it!");
+                    Console.WriteLine("Someone sent an invalid Block!!!");
                 }
             }
         }
@@ -100,13 +100,14 @@ namespace Blockchain
         {
             IBlock newBlock = new VoidBlock();
 
-            for (var i = 0; i < 1000000; i++)
+            for (var i = 0; i < 100000; i++)
             {
-                newBlock = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
+                var block = _blockFactory.GenerateNextBlock(Blockchain.GetLastBlock(),
                     data, i);
 
-                if (DoesBlockSolveFunction(newBlock))
+                if (DoesBlockSolveFunction(block))
                 {
+                    newBlock = block;
                     break;
                 }
             }
@@ -118,7 +119,8 @@ namespace Blockchain
         {
             bool result;
 
-            if (Int32.TryParse(block.Hash.Substring(0, 3), out int firstThreeDigits))
+            if (block.Hash.Length >= 3 &&
+                Int32.TryParse(block.Hash.Substring(0, 3), out int firstThreeDigits))
             {
                 result = firstThreeDigits < 100 ? true : false;
             }

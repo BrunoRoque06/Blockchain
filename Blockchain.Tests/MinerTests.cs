@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace Blockchain.Tests
 {
@@ -268,6 +269,24 @@ namespace Blockchain.Tests
             Assert.That(firstMiner.Blockchain.Count(), Is.EqualTo(2));
             Assert.That(secondMiner.Blockchain.Count(), Is.EqualTo(2));
             Assert.That(thirdMiner.Blockchain.Count(), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void Test_that_when_no_solution_for_data_is_found_a_voidblock_is_returned()
+        {
+            _blockFactoryMock = new Mock<IBlockFactory>();
+            _blockFactoryMock.Setup(e => e.GenerateGenesisBlock()).Returns(_genesisBlock);
+            _blockFactoryMock.Setup(e => e.GenerateNextBlock(It.IsAny<Block>(),
+                It.IsAny<string>(), It.IsAny<int>())).Returns(_dummyBlock);
+            _blockFactoryMock.Setup(e => e.GetBlockHash(It.IsAny<Block>()))
+                .Returns(string.Empty);
+
+            var miner = new Miner(_blockFactoryMock.Object,
+                _unconfirmedDataStack.Object);
+
+            var block = miner.SolveFunction(string.Empty);
+
+            Assert.That(block is VoidBlock, Is.True);
         }
     }
 }
