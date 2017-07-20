@@ -14,12 +14,7 @@ namespace Blockchain
 
         public IBlock GenerateGenesisBlock()
         {
-            return new Block(0,
-                DateTime.Now,
-                string.Empty,
-                string.Empty,
-                "Genesis",
-                0);
+            return new GenesisBlock();
         }
 
         public IBlock GenerateNextBlock(IBlock lastBlock,

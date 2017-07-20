@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="BlockFactory.cs" />
+    <Compile Include="GenesisBlock.cs" />
     <Compile Include="Interfaces\IBlock.cs" />
     <Compile Include="Interfaces\IFifoQueue.cs" />
     <Compile Include="Miner.cs" />
