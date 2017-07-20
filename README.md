@@ -21,4 +21,5 @@ Main classes:
 * __Miner__, responsible for getting data, solving blocks, and broadcasting them. 
 
 ## UML
-![umlblockchain](https://user-images.githubusercontent.com/28269891/28247206-b7b1087c-6a23-11e7-8353-361c35b6d67d.png)
+![umlblockchain](https://user-images.githubusercontent.com/28269891/28410554-efd2c1b8-6d35-11e7-9da1-1839b397ee2f.png)
+
