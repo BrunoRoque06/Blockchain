@@ -6,7 +6,7 @@ This project consists on a simple implementation of a blockchain, managed by a g
 Routine:
 * Data (digitally signed) is sent to the Unconfirmed Data (a FIFO queue);
 * A Miner takes an unconfirmed data entry;
-* Miner solves function, in this project a simple Left(Hash(block, nonce), 3) < 100. Function used for Bitcoin takes around ~10 minutes/block to find a correct value for "nonce";
+* Miner solves a "Proof of Work" problem, in this project a simple Left(Hash(block, nonce), 3) < 100. Function used for Bitcoin takes around ~10 minutes/block to find a correct value for "nonce" property;
 * Miner broadcasts block;
 * Other miners receive the block, confirm the integrity of the block (hash validation), and add it to their blockchain;
 * If the block is not validated (hash), miners won’t add it to their blockchain and wont broadcast it;
