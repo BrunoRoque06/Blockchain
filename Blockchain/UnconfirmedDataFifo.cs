@@ -6,7 +6,7 @@ namespace Blockchain
 {
     public class UnconfirmedDataFifo : IFifoQueue
     {
-        private List<object> _datas;
+        private IList<object> _datas;
 
         public UnconfirmedDataFifo()
         {

@@ -6,7 +6,7 @@ namespace Blockchain
 {
     public class Blockchain
     {
-        public List<IBlock> Blocks { get; }
+        public IList<IBlock> Blocks { get; }
 
         public Blockchain(IBlock genesisBlock)
         {
