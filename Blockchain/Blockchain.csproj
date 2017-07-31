@@ -49,7 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Blockchain\Blockchain.Core.csproj">
+    <ProjectReference Include="..\Blockchain.Core\Blockchain.Core.csproj">
       <Project>{ced35404-9bf1-4900-acc2-2d2140695cde}</Project>
       <Name>Blockchain.Core</Name>
     </ProjectReference>

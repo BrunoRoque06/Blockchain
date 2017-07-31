@@ -4,7 +4,7 @@ namespace Blockchain
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var blockFactory = new BlockFactory(new HashEstimator());
             var unconfirmedData = new UnconfirmedDataFifo();
