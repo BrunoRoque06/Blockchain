@@ -68,9 +68,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Blockchain\Blockchain.csproj">
+    <ProjectReference Include="..\Blockchain\Blockchain.Core.csproj">
       <Project>{ced35404-9bf1-4900-acc2-2d2140695cde}</Project>
-      <Name>Blockchain</Name>
+      <Name>Blockchain.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
