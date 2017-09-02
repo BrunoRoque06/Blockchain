@@ -1,7 +1,7 @@
 # Blockchain
 
 ## Overview
-This project consists on a simple implementation of a blockchain, managed by a group of miners. Blockchain is a tecnology that "guarantees" the order of a given set of events, and is used in tecnologies such as Bitcoin and Ethereum. If these events are transactions (Bitcoin), it solves the double spending problem. Another important element of these systems is Digital Signature, which guarantees authentication, non-repudiation, and integrity.
+This project is a simple implementation of a blockchain, managed by a group of miners. Blockchain is a tecnology that "guarantees" the order of a given set of events, and is used in tecnologies such as Bitcoin and Ethereum. If these events are transactions (Bitcoin), it solves the double spending problem. Another important element of these systems is Digital Signature, which guarantees authentication, non-repudiation, and integrity.
 
 Routine:
 * Data (digitally signed) is sent to the Unconfirmed Data (a FIFO queue);
