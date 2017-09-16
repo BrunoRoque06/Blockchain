@@ -5,11 +5,14 @@ namespace Blockchain
 {
     public class Miner
     {
+        private readonly static int NUMBER_HASH_DIGITS = 3;
+        private readonly static int REQUIRED_HASH_VALUE = 100;
+
+        private readonly IBlockFactory _blockFactory;
+        private readonly IFifoQueue _unconfirmedDataFifo;
         public Miner Before;
         public Miner Next;
         public Blockchain Blockchain { get; }
-        private IBlockFactory _blockFactory;
-        private IFifoQueue _unconfirmedDataFifo;
 
         public Miner(IBlockFactory blockFactory, IFifoQueue unconfirmedData)
         {
@@ -128,10 +131,10 @@ namespace Blockchain
         {
             bool result;
 
-            if (block.Hash.Length >= 3 &&
-                Int32.TryParse(block.Hash.Substring(0, 3), out int firstThreeDigits))
+            if (block.Hash.Length >= NUMBER_HASH_DIGITS &&
+                Int32.TryParse(block.Hash.Substring(0, NUMBER_HASH_DIGITS), out int hashDigits))
             {
-                result = firstThreeDigits < 100 ? true : false;
+                result = hashDigits < REQUIRED_HASH_VALUE ? true : false;
             }
             else
             {
@@ -143,7 +146,7 @@ namespace Blockchain
 
         public object GetUnconfirmedData()
         {
-            return _unconfirmedDataFifo.GetData();
+            return _unconfirmedDataFifo.GetAndRemoveData();
         }
     }
 }

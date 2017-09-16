@@ -6,7 +6,7 @@ namespace Blockchain
 {
     public class UnconfirmedDataFifo : IFifoQueue
     {
-        private IList<object> _datas;
+        private readonly IList<object> _datas;
 
         public UnconfirmedDataFifo()
         {
@@ -18,7 +18,7 @@ namespace Blockchain
             _datas.Add(data);
         }
 
-        public object GetData()
+        public object GetAndRemoveData()
         {
             object data = null;
 

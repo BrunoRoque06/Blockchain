@@ -38,7 +38,7 @@ namespace Blockchain.Tests
                 It.IsAny<string>(), It.IsAny<int>())).Returns(_dummyBlock);
 
             _unconfirmedDataStack = new Mock<IFifoQueue>();
-            _unconfirmedDataStack.Setup(e => e.GetData()).Returns(_data);
+            _unconfirmedDataStack.Setup(e => e.GetAndRemoveData()).Returns(_data);
 
             _miner = new Miner(_blockFactoryMock.Object,
                 _unconfirmedDataStack.Object);

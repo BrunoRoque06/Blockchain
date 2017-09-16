@@ -12,7 +12,7 @@ namespace Blockchain.Tests
             var data = "ThisIsData";
 
             unconfirmedData.AddData(data);
-            var result = unconfirmedData.GetData();
+            var result = unconfirmedData.GetAndRemoveData();
 
             Assert.That(result, Is.EqualTo(data));
         }
@@ -22,7 +22,7 @@ namespace Blockchain.Tests
         {
             var unconfirmedData = new UnconfirmedDataFifo();
 
-            var result = unconfirmedData.GetData();
+            var result = unconfirmedData.GetAndRemoveData();
 
             Assert.That(result, Is.Null);
         }
@@ -37,9 +37,9 @@ namespace Blockchain.Tests
             unconfirmedData.AddData(data1);
             unconfirmedData.AddData(data2);
 
-            var result1 = unconfirmedData.GetData();
-            var result2 = unconfirmedData.GetData();
-            var result3 = unconfirmedData.GetData();
+            var result1 = unconfirmedData.GetAndRemoveData();
+            var result2 = unconfirmedData.GetAndRemoveData();
+            var result3 = unconfirmedData.GetAndRemoveData();
 
             Assert.That(result1, Is.EqualTo(data1));
             Assert.That(result2, Is.EqualTo(data2));

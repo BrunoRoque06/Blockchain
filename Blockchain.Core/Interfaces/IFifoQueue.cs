@@ -3,6 +3,6 @@
     public interface IFifoQueue
     {
         void AddData(object data);
-        object GetData();
+        object GetAndRemoveData();
     }
 }
