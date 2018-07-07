@@ -1,7 +1,7 @@
 # Blockchain
 
 ## Overview
-This project is a simple implementation of Blockchain, managed by a group of miners. Blockchain is a tecnology that "guarantees" the order of a given set of events, and it is used in technologies such as Bitcoin and Ethereum. If these events are transactions (like Bitcoin), it "solves" the double spending problem. Another important element of these systems is Digital Signature, which guarantees authentication, non-repudiation, and integrity.
+This project is a simple implementation of a Blockchain, managed by a group of miners. Blockchain is a tecnology that "guarantees" the order of a given set of events. If these events are bank transactions, it "solves" the double spending problem. Another important element of these systems is Digital Signature, which guarantees authentication, non-repudiation, and integrity.
 
 Routine:
 * Data (digitally signed) is sent to the Unconfirmed Data (a FIFO queue);
@@ -19,7 +19,3 @@ Main classes:
 * `HashEstimator`, responsible for hash estimation;
 * `UnconfirmedDataFifo`, FIFO queue, with the unconfirmed data;
 * `Miner`, responsible for getting data, solving blocks, and broadcasting them.
-
-## UML
-![umlblockchain](https://user-images.githubusercontent.com/28269891/28410554-efd2c1b8-6d35-11e7-9da1-1839b397ee2f.png)
-
